@@ -8,6 +8,7 @@ from telegram.ext.filters import Filters
 from telegram import KeyboardButton, ReplyKeyboardMarkup
 from collections import OrderedDict
 import requests
+import datetime as dt
 
 import json
 import f
@@ -52,7 +53,8 @@ def Tickets_function(update: Update, context: CallbackContext):
     update.message.reply_text(ret)
     
 def scrape():
-    os.system("snscrape --jsonl --progress --max-results 50 twitter-search \"from:JuventusFCWomen\" > tweets.json && cat tweets.json | jq '.content' > data.txt")
+    os.system("snscrape --jsonl --progress --max-results 100 twitter-search \"from:JuventusFCWomen since:2021-10-22\" > tweets.json && cat tweets.json | jq '.content' > data.txt")
+    # os.system("snscrape --jsonl --progress --max-results 1000 twitter-search \"from:JuventusFCWomen since:2021-10-22\" > tweets.json && cat tweets.json | jq '.content' > data.txt")
     
 def open_file():
     with open('data.txt','r') as file:
